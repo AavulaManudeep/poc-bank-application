@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS poc_db;
+
+USE poc_db;
+

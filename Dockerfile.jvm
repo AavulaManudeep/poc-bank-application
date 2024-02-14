@@ -7,7 +7,7 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.jvm -t quarkus/poc-bank-application-jvm .
+#cd
 #
 # Then run the container using:
 #
@@ -85,15 +85,17 @@ ENV LANGUAGE='en_US:en'
 
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 target/quarkus-app/*.jar /deployments/
-COPY --chown=185 target/quarkus-app/app/ /deployments/app/
-COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/lib/ /deployments/lib/
+COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/*.jar /deployments/
+COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/app/ /deployments/app/
+COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/quarkus/ /deployments/quarkus/
 
-EXPOSE 9090
+EXPOSE 9090 5005
 USER 185
 ENV JAVA_OPTS_APPEND="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
+ENV JAVA_DEBUG=true
+ENV JAVA_DEBUG_PORT=*:5005
 
 ENTRYPOINT [ "/opt/jboss/container/java/run/run-java.sh" ]
 
