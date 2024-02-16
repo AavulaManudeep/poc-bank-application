@@ -39,7 +39,7 @@ jobs:
       # Username used to log against the Docker registry
         username: manudeep
       # Password or personal access token used to log against the Docker registry
-        password: dckr_pat_dCIjS2VciFXo0A2W6rUJvIVL1R4
+        password: 
       # Specifies whether the given registry is ECR (auto, true or false)
         ecr: manudeep/quarkus-with-mysql
       # Log out from the Docker registry at the end of a job
