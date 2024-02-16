@@ -27,6 +27,6 @@ public class CustomerResource {
     @GET
     @Path("/test")
     public String getTest(){
-        return "test well done";
+        return "test well done!";
     }
 }
