@@ -45,17 +45,16 @@ jobs:
         password: ${{ secrets.DOCKER_SECRET }}
 
 
-    - name: Set up Docker Buildx
-      uses: actions/setup-buildx-action@v3
+    - name: Building Docker images using Docker compose
       run: docker compose build
 
-    - name: Build and push mysqldb
+    - name: push mysqldb
       uses: actions/build-push-action@v3
       with:
         push: poc-bank-application-mysqldb
         tag: latest
 
-    - name: Build and push
+    - name: push poc-bank-application-quarkus
       uses: actions/build-push-action@v3
       with:
         push: poc-bank-application-poc-bank-application-quarkus
