@@ -51,12 +51,14 @@ jobs:
     - name: push mysqldb
       uses: actions/build-push-action@v3
       with:
+        context: .
         push: poc-bank-application-mysqldb
         tag: latest
 
     - name: push poc-bank-application-quarkus
       uses: actions/build-push-action@v3
       with:
+        context: .
         push: poc-bank-application-poc-bank-application-quarkus
         tag: latest
 
