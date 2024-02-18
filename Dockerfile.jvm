@@ -85,11 +85,7 @@ ENV LANGUAGE='en_US:en'
 
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --chown=185 ${pwd}/target/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 ${pwd}/target/quarkus-app/*.jar /deployments/
 COPY --chown=185 ${pwd}/target/*-runner.jar /deployments/
-COPY --chown=185 ${pwd}/target/quarkus-app/app/ /deployments/app/
-COPY --chown=185 ${pwd}/target/quarkus-app/quarkus/ /deployments/quarkus/
 
 EXPOSE 9090 5005
 USER 185
