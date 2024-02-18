@@ -85,15 +85,16 @@ ENV LANGUAGE='en_US:en'
 
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/*.jar /deployments/
-COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/app/ /deployments/app/
-COPY --chown=185 /Users/manudeepaavula/Downloads/poc-bank-application/target/quarkus-app/quarkus/ /deployments/quarkus/
+COPY --chown=185 ${pwd}/target/quarkus-app/lib/ /deployments/lib/
+COPY --chown=185 ${pwd}/target/quarkus-app/*.jar /deployments/
+COPY --chown=185 ${pwd}/target/*-runner.jar /deployments/
+COPY --chown=185 ${pwd}/target/quarkus-app/app/ /deployments/app/
+COPY --chown=185 ${pwd}/target/quarkus-app/quarkus/ /deployments/quarkus/
 
 EXPOSE 9090 5005
 USER 185
 ENV JAVA_OPTS_APPEND="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
-ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
+ENV JAVA_APP_JAR="/deployments/poc-bank-application-0.0.1-runner.jar"
 ENV JAVA_DEBUG=true
 ENV JAVA_DEBUG_PORT=*:5005
 
