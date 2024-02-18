@@ -45,14 +45,14 @@ jobs:
       with:
         context: .
         push: true
-        tag: poc-bank-application-mysqldb:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/poc-bank-application-mysqldb:latest
 
     - name: push poc-bank-application-quarkus
       uses: docker/build-push-action@v3
       with:
         context: .
         push: true
-        tag: poc-bank-application-poc-bank-application-quarkus:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/poc-bank-application-poc-bank-application-quarkus:latest
 
     - name: check build Images
       run: docker images
