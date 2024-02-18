@@ -41,14 +41,14 @@ jobs:
         password: ${{ secrets.DOCKER_SECRET }}
 
     - name: push mysqldb
-      uses: actions/build-push-action@v3
+      uses: docker/build-push-action@v3
       with:
         context: .
         push: true
         tag: ${{ secrets.DOCKER_USERNAME }}/poc-bank-application-mysqldb:latest
 
     - name: push poc-bank-application-quarkus
-      uses: actions/build-push-action@v3
+      uses: docker/build-push-action@v3
       with:
         context: .
         push: true
