@@ -1,5 +1,21 @@
 version: '3.8'
 services:
+  rabbitmq:
+    container_name: rabbitmq-container
+    build:
+      context: .
+      dockerfile: ./Dockerfile.rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - total_bridge
+  #    healthcheck:
+#      test: [ "CMD", "curl", "-f", "http://localhost:15672" ]
+#      interval: 60s
+#      start_period: 20s
+#      retries: 3
+#      timeout: 10s
   mysqldb:
     container_name: mysqldb-con-qu
     build:
@@ -14,6 +30,8 @@ services:
       start_period: 20s
       retries: 3
       timeout: 10s
+    networks:
+      - total_bridge
   poc-bank-application-quarkus:
     container_name: poc-con-qu
     build:
@@ -27,4 +45,10 @@ services:
     depends_on:
       mysqldb:
         condition: service_healthy
-
+    networks:
+      - total_bridge
+    #      rabbitmq:
+    #        condition: service_healthy
+networks:
+  total_bridge:
+    driver: bridge
